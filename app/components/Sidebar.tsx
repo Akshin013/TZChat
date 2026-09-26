@@ -1,20 +1,20 @@
 "use client";
 
 import ChatList from "./ChatList";
+import type { Message, Chat } from "../lib/types";
+// type Message = {
+//   id: string | number;
+//   text: string;
+//   incoming: boolean;
+//   time: string;
+// };
 
-type Message = {
-  id: string | number;
-  text: string;
-  incoming: boolean;
-  time: string;
-};
-
-type Chat = {
-  id: string;
-  phone: string;
-  lastMessage: string;
-  messages: Message[];
-};
+// type Chat = {
+//   id: string;
+//   phone: string;
+//   lastMessage: string;
+//   messages: Message[];
+// };
 
 type SidebarProps = {
   chats: Chat[];

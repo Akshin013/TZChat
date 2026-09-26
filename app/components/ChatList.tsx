@@ -1,21 +1,22 @@
 "use client";
+import type { Message, Chat } from "../lib/types";
 
-type Message = {
-  id: string | number;
-  text: string;
-  incoming: boolean;
-  time: string;
-};
+// type Message = {
+//   id: string | number;
+//   text: string;
+//   incoming: boolean;
+//   time: string;
+// };
 
-type Chat = {
-  id: string;
-  phone: string;
-  lastMessage: string;
-  messages: Message[];
-  unreadCount: number;
-  username?: string | null;
-  name?: string | null;
-};
+// type Chat = {
+//   id: string;
+//   phone: string;
+//   lastMessage: string;
+//   messages: Message[];
+//   unreadCount: number;
+//   username?: string | null;
+//   name?: string | null;
+// };
 
 type ChatListProps = {
   chats: Chat[];

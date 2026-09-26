@@ -6,22 +6,23 @@ import ChatHeader from "../components/ChatHeader";
 import MessageList from "../components/MessageList";
 import { normalizePhone, phonesMatch } from "../lib/phone";
 import { useResizableSidebar } from "../hooks/useResizableSidebar";
+import type { Message, Chat } from "../lib/types";
 
-type Message = {
-  id: string | number;
-  text: string;
-  incoming: boolean;
-  time: string;
-};
+// type Message = {
+//   id: string | number;
+//   text: string;
+//   incoming: boolean;
+//   time: string;
+// };
 
-type Chat = {
-  id: string;
-  phone: string;
-  lastMessage: string;
-  messages: Message[];
-  unreadCount: number;
-  username?: string | null;
-};
+// type Chat = {
+//   id: string;
+//   phone: string;
+//   lastMessage: string;
+//   messages: Message[];
+//   unreadCount: number;
+//   username?: string | null;
+// };
 
 export default function ChatPage() {
   const router = useRouter();
@@ -105,7 +106,6 @@ export default function ChatPage() {
           );
 
           if (!existingChat) {
-            // реально новый номер — создаём чат
             return [
               ...prev,
               {
@@ -113,6 +113,7 @@ export default function ChatPage() {
                 phone: `+${incomingChatId.replace("@c.us", "")}`,
                 lastMessage: data.message.text,
                 messages: [data.message],
+                unreadCount: incomingChatId === selectedChat ? 0 : 1,
               },
             ];
           }
