@@ -1,22 +1,6 @@
 "use client";
 import type { Message, Chat } from "../lib/types";
 
-// type Message = {
-//   id: string | number;
-//   text: string;
-//   incoming: boolean;
-//   time: string;
-// };
-
-// type Chat = {
-//   id: string;
-//   phone: string;
-//   lastMessage: string;
-//   messages: Message[];
-//   unreadCount: number;
-//   username?: string | null;
-//   name?: string | null;
-// };
 
 type ChatListProps = {
   chats: Chat[];
@@ -77,7 +61,7 @@ export default function ChatList({
             </div>
 
             {hasUnread && (
-              <span className="shrink-0 min-w-[20px] h-5 px-1.5 rounded-full bg-white text-black text-[11px] font-semibold flex items-center justify-center">
+              <span className="shrink-0 min-w-[20px] h-5 px-1.5 rounded-full bg-[#25D366] text-black text-[11px] font-semibold flex items-center justify-center">
                 {chat.unreadCount > 99 ? "99+" : chat.unreadCount}
               </span>
             )}

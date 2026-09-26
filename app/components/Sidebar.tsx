@@ -2,19 +2,6 @@
 
 import ChatList from "./ChatList";
 import type { Message, Chat } from "../lib/types";
-// type Message = {
-//   id: string | number;
-//   text: string;
-//   incoming: boolean;
-//   time: string;
-// };
-
-// type Chat = {
-//   id: string;
-//   phone: string;
-//   lastMessage: string;
-//   messages: Message[];
-// };
 
 type SidebarProps = {
   chats: Chat[];
@@ -38,16 +25,16 @@ export default function Sidebar({
   onDeleteChat,
 }: SidebarProps) {
   return (
-<aside className="w-full  shrink-0 border-r border-white/10 bg-[#101216] flex flex-col">
+<aside className="w-full  shrink-0 border-r border-white/10 bg-[#111b21] flex flex-col">
       {/* LOGO */}
       <div className="h-[72px] px-5 flex items-center justify-between border-b border-white/10">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-white text-black flex items-center justify-center font-bold">
-            M
+            W
           </div>
 
           <div>
-            <h1 className="font-semibold">MAX</h1>
+            <h1 className="font-semibold">Whatsapp</h1>
 
             <p className="text-xs text-gray-500">Messenger</p>
           </div>

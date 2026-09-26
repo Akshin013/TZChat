@@ -61,9 +61,8 @@ export default function MessageList({ messages }: MessageListProps) {
                   "animate-[fadeInUp_0.25s_ease-out]",
                   "transition-transform hover:-translate-y-[1px]",
                   msg.incoming
-                    ? "bg-[#1b1e24] text-white"
-                    : "bg-white text-black",
-                  // скругления с "хвостиком" у последнего сообщения в группе
+                    ? "bg-[#202c33] text-[#e9edef]"
+                    : "bg-[#005c4b] text-[#e9edef]",
                   msg.incoming
                     ? `rounded-2xl ${isLastInGroup ? "rounded-bl-md" : ""} ${
                         isFirstInGroup ? "" : "rounded-tl-md"
@@ -78,10 +77,7 @@ export default function MessageList({ messages }: MessageListProps) {
                 </p>
 
                 <div
-                  className={`text-[10px] mt-1 text-right select-none ${
-                    msg.incoming ? "text-gray-500" : "text-gray-400"
-                  }`}
-                >
+                  className="text-[10px] mt-1 text-right select-none text-[#8696a0]">
                   {msg.time}
                 </div>
               </div>
