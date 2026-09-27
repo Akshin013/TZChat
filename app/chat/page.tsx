@@ -246,8 +246,6 @@ export default function ChatPage() {
         return;
       }
 
-      console.log("Отправлено:", data);
-
       setMessage("");
       const text = message.trim();
 
@@ -376,9 +374,6 @@ export default function ChatPage() {
       });
 
       const data = await response.json();
-
-      console.log("CONTACT DATA:", data);
-      console.log("AVATAR:", data.avatar);
 
       if (!data.success) {
         alert("Не удалось получить данные контакта");

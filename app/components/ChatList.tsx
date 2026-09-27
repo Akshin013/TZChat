@@ -22,7 +22,6 @@ export default function ChatList({
       c.phone.includes(search) ||
       c.lastMessage.toLowerCase().includes(search.toLowerCase()),
   );
-  console.log(chats);
 
   return (
     <ul className="flex flex-col">
