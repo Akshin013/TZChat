@@ -8,22 +8,6 @@ import { normalizePhone, phonesMatch } from "../lib/phone";
 import { useResizableSidebar } from "../hooks/useResizableSidebar";
 import type { Message, Chat } from "../lib/types";
 
-// type Message = {
-//   id: string | number;
-//   text: string;
-//   incoming: boolean;
-//   time: string;
-// };
-
-// type Chat = {
-//   id: string;
-//   phone: string;
-//   lastMessage: string;
-//   messages: Message[];
-//   unreadCount: number;
-//   username?: string | null;
-// };
-
 export default function ChatPage() {
   const router = useRouter();
 
@@ -208,11 +192,11 @@ export default function ChatPage() {
   }, [isLoaded]);
 
   useEffect(() => {
-  const check = () => setIsDesktop(window.innerWidth >= 768);
-  check();
-  window.addEventListener("resize", check);
-  return () => window.removeEventListener("resize", check);
-}, []);
+    const check = () => setIsDesktop(window.innerWidth >= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
   // ///////////////////////////////////////////////////
   const sendMessage = async () => {
     if (!message.trim() || sending) return;
@@ -326,10 +310,17 @@ export default function ChatPage() {
 
       const data = await response.json();
 
-      if (data.success && data.username) {
+      if (data.success) {
         setChats((prev) =>
           prev.map((chat) =>
-            chat.id === chatId ? { ...chat, username: data.username } : chat,
+            chat.id === chatId
+              ? {
+                  ...chat,
+                  username: data.username || null,
+                  name: data.name || null,
+                  avatar: data.avatar || null,
+                }
+              : chat,
           ),
         );
       }
@@ -354,7 +345,7 @@ export default function ChatPage() {
     }
   };
 
-  const createChat = () => {
+  const createChat = async () => {
     const cleanPhone = normalizePhone(newPhone);
 
     if (cleanPhone.length < 10 || cleanPhone.length > 15) {
@@ -362,36 +353,58 @@ export default function ChatPage() {
       return;
     }
 
-    if (!cleanPhone) {
-      alert("Введите номер телефона");
+    const instanceId = localStorage.getItem("instanceId");
+    const apiToken = localStorage.getItem("apiToken");
+
+    if (!instanceId || !apiToken) {
+      alert("Нет данных GREEN-API");
       return;
     }
 
-    const exists = chats.some((chat) => chat.id === cleanPhone);
+    try {
+      const response = await fetch("/api/get-contact-info", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          instanceId,
+          apiToken,
+          chatId: `${cleanPhone}@c.us`,
+        }),
+      });
 
-    if (exists) {
-      setSelectedChat(cleanPhone);
-      setShowNewChat(false);
-      setNewPhone("");
-      return;
-    }
+      const data = await response.json();
 
-    setChats((prev) => [
-      ...prev,
-      {
+      console.log("CONTACT DATA:", data);
+      console.log("AVATAR:", data.avatar);
+
+      if (!data.success) {
+        alert("Не удалось получить данные контакта");
+        return;
+      }
+
+      const newChat: Chat = {
         id: cleanPhone,
         phone: `+${cleanPhone}`,
         lastMessage: "",
         messages: [],
-        unreadCount: cleanPhone === selectedChat ? 0 : 1,
-      },
-    ]);
+        unreadCount: 0,
 
-    setSelectedChat(cleanPhone);
-    setShowNewChat(false);
-    setNewPhone("");
+        username: data.username || null,
+        name: data.name || null,
+        avatar: data.avatar || null,
+      };
+
+      setChats((prev) => [...prev, newChat]);
+
+      setSelectedChat(cleanPhone);
+      setShowNewChat(false);
+      setNewPhone("");
+    } catch (error) {
+      console.error("CREATE CHAT ERROR:", error);
+    }
   };
-
   return (
     <>
       {showNewChat && (
@@ -434,9 +447,9 @@ export default function ChatPage() {
 
       <main className="h-screen bg-[#0b0d10] text-white flex overflow-hidden">
         <div
-  className={`${mobileChatOpen ? "hidden" : "flex"} w-full md:w-auto md:flex relative shrink-0`}
-  style={isDesktop ? { width: sidebarWidth } : undefined}
->
+          className={`${mobileChatOpen ? "hidden" : "flex"} w-full md:w-auto md:flex relative shrink-0`}
+          style={isDesktop ? { width: sidebarWidth } : undefined}
+        >
           <Sidebar
             chats={chats}
             selectedChat={selectedChat}
@@ -474,6 +487,7 @@ export default function ChatPage() {
           <ChatHeader
             phone={currentChat?.phone || selectedChat}
             username={currentChat?.username}
+            avatar={currentChat?.avatar}
             onBack={() => setMobileChatOpen(false)}
           />
 

@@ -13,4 +13,5 @@ export type Chat = {
   unreadCount: number;
   username?: string | null;
   name?: string | null;
+  avatar: string | null;
 };

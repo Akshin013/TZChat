@@ -1,6 +1,6 @@
 "use client";
 import type { Message, Chat } from "../lib/types";
-
+import Avatar from "./Avatar";
 
 type ChatListProps = {
   chats: Chat[];
@@ -21,6 +21,7 @@ export default function ChatList({
     (c) =>
       c.phone.includes(search) || c.lastMessage.toLowerCase().includes(search.toLowerCase())
   );
+console.log(chats);
 
   return (
     <ul className="flex flex-col">
@@ -37,7 +38,11 @@ export default function ChatList({
             }`}
           >
             <div className="w-10 h-10 shrink-0 rounded-full bg-[#272b32] flex items-center justify-center text-sm">
-              {chat.phone.slice(-2)}
+              <Avatar
+  src={chat.avatar}
+  name={chat.name || chat.username || chat.phone}
+  size="md"
+/>
             </div>
 
             <div className="flex-1 min-w-0">
@@ -48,6 +53,8 @@ export default function ChatList({
                   }`}
                 >
                   {chat.phone}
+
+                  
                 </span>
               </div>
 

@@ -26,7 +26,7 @@ export default function Home() {
           </div>
         
           <h1 className='text-3xl font-semibold tracking-tight'>
-            Max Messenger
+            Whatsapp Messenger
           </h1>
 
           <p className='text-gray-400 mt-2'>
@@ -65,14 +65,14 @@ export default function Home() {
 
             <button 
               onClick={handleConnect}
-              className='w-full h-12 rounded-xl bg-white text-black font-medium transition hover:bg-gray-200 active:scale-[0.98] '>
+              className='w-full h-12 rounded-xl cursor-pointer bg-white text-black font-medium transition hover:bg-gray-200 active:scale-[0.98] '>
               Подключиться
             </button>
           </div>
         </div>
 
         <p className='text-center text-xs text-gray-600 mt-5'>
-          GREEN-API * MAX
+          GREEN-API * WHATSAPP
         </p>
 
       </div>
