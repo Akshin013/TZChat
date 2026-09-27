@@ -1,36 +1,171 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chat TZ — Mini Messenger
 
-## Getting Started
+Мини-мессенджер, разработанный в рамках тестового задания.
 
-First, run the development server:
+Приложение позволяет подключиться к WhatsApp через GREEN-API, создавать чаты, отправлять и получать сообщения, а также хранить данные чатов локально.
+
+## 🚀 Запуск проекта
+
+### 1. Установить зависимости
+
+```bash
+npm install
+```
+
+### 2. Запустить development-сервер
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+После запуска открыть:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Production build
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠 Стек
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Next.js
+* React
+* TypeScript
+* Tailwind CSS
+* GREEN-API
+* LocalStorage
+* Next.js API Routes
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 💬 Основной функционал
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### WhatsApp
+
+* Подключение через `ID Instance` и `API Token`
+* Отправка сообщений через GREEN-API
+* Получение входящих сообщений
+* Автоматическое обновление сообщений
+* Создание новых чатов по номеру телефона
+* Поиск по списку чатов
+* Удаление чатов
+* Сохранение чатов и выбранного контакта в LocalStorage
+
+### Интерфейс
+
+* Адаптивная версия для desktop и mobile
+* Отдельный экран подключения
+* Список чатов
+* Окно выбранного диалога
+* Header контакта
+* Поле ввода и отправки сообщений
+* Mobile-навигация между списком чатов и диалогом
+* Тёмная минималистичная тема
+
+---
+
+## ✨ Дополнительно реализовано
+
+Помимо основного ТЗ, я самостоятельно добавил несколько улучшений:
+
+* **Получение информации о контакте через GREEN-API**
+* **Отображение аватаров WhatsApp**
+* Переиспользуемый компонент `Avatar`
+* Отображение имени/username контакта
+* Fallback-аватар с первой буквой имени или номера, если фотографии нет
+* Сохранение данных чатов после перезагрузки страницы
+* Обработка входящих сообщений от новых контактов
+* Защита от одновременных запросов получения сообщений
+* Адаптация интерфейса под мобильные устройства
+* Запрет масштабирования страницы на мобильных устройствах
+* Обработка ошибок API
+* Разделение frontend-логики и API-запросов через Next.js API Routes
+
+---
+
+## 📱 Адаптивность
+
+Интерфейс адаптирован под:
+
+* Desktop
+* Tablet
+* Mobile
+
+На мобильных устройствах список чатов и окно диалога работают как отдельные экраны.
+
+Также отключено масштабирование страницы через pinch-to-zoom для более нативного поведения messenger-интерфейса.
+
+---
+
+## 🔐 Безопасность
+
+API Token не используется напрямую в клиентских запросах к GREEN-API.
+
+Запросы к GREEN-API выполняются через серверные API Routes Next.js.
+
+---
+
+## 📁 Основная структура
+
+```
+app/
+├── api/
+│   ├── get-contact-info/
+│   ├── receive-message/
+│   └── send-message/
+│
+├── chat/
+│   └── page.tsx
+│
+├── components/
+│   ├── Avatar.tsx
+│   ├── ChatHeader.tsx
+│   ├── ChatList.tsx
+│   └── ...
+│
+├── connect/
+│   └── ...
+│
+├── page.tsx
+├── layout.tsx
+└── globals.css
+```
+
+---
+
+## ⚙️ Подключение WhatsApp
+
+На странице подключения необходимо указать:
+
+ID Instance
+API Token
+
+Эти данные предоставляются GREEN-API.
+
+После успешного подключения пользователь переходит в интерфейс мессенджера.
+
+---
+
+## 📌 Важно
+
+Для работы отправки и получения сообщений требуется активный аккаунт/инстанс GREEN-API с доступным лимитом API.
+
+Если GREEN-API возвращает ошибку ограничения тарифа или лимита, приложение отображает ошибку API.
+
+---
+
+## 👨‍💻 Автор
+
+**Akshin Gadimov**
+
+Full-Stack Developer
+
+GitHub:
+https://github.com/Akshin013
