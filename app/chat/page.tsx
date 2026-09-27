@@ -415,7 +415,7 @@ export default function ChatPage() {
             <input
               value={newPhone}
               onChange={(e) => setNewPhone(e.target.value)}
-              placeholder="994501234567"
+              placeholder="Введите номер телевона"
               className="w-full h-12 rounded-xl bg-[#191c21] border border-white/10 px-4 outline-none focus:border-white/30"
             />
 
