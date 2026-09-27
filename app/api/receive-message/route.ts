@@ -40,7 +40,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // GREEN-API может вернуть null,
     // когда новых уведомлений нет
     if (!text || text === "null") {
       return NextResponse.json({
@@ -60,7 +59,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Дополнительная защита
+    // Доп защита
     if (!notification) {
       return NextResponse.json({
         success: true,
@@ -73,7 +72,7 @@ export async function POST(request: NextRequest) {
     const receiptId = notification.receiptId;
     const body = notification.body;
 
-    // Если почему-то нет body
+    // Если нет body
     if (!body) {
       if (receiptId) {
         const deleteUrl =
@@ -102,8 +101,6 @@ export async function POST(request: NextRequest) {
       const chatId =
         body.senderData?.chatId?.replace("@c.us", "") || "";
 
-      // Сначала удаляем уведомление,
-      // чтобы оно не приходило повторно
       if (receiptId) {
         const deleteUrl =
           `https://api.green-api.com/waInstance${instanceId}` +
@@ -139,7 +136,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Удаляем остальные уведомления
     if (receiptId) {
       const deleteUrl =
         `https://api.green-api.com/waInstance${instanceId}` +

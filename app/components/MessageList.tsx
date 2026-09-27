@@ -2,13 +2,6 @@
 import { useEffect, useRef } from "react";
 import type { Message, Chat } from "../lib/types";
 
-// type Message = {
-//   id: string | number;
-//   text: string;
-//   incoming: boolean;
-//   time: string;
-// };
-
 type MessageListProps = {
   messages: Message[];
 };

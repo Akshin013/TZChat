@@ -19,9 +19,10 @@ export default function ChatList({
 }: ChatListProps) {
   const filtered = chats.filter(
     (c) =>
-      c.phone.includes(search) || c.lastMessage.toLowerCase().includes(search.toLowerCase())
+      c.phone.includes(search) ||
+      c.lastMessage.toLowerCase().includes(search.toLowerCase()),
   );
-console.log(chats);
+  console.log(chats);
 
   return (
     <ul className="flex flex-col">
@@ -39,22 +40,22 @@ console.log(chats);
           >
             <div className="w-10 h-10 shrink-0 rounded-full bg-[#272b32] flex items-center justify-center text-sm">
               <Avatar
-  src={chat.avatar}
-  name={chat.name || chat.username || chat.phone}
-  size="md"
-/>
+                src={chat.avatar}
+                name={chat.name || chat.username || chat.phone}
+                size="md"
+              />
             </div>
 
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2">
                 <span
                   className={`text-sm truncate ${
-                    hasUnread ? "font-semibold text-white" : "font-medium text-gray-200"
+                    hasUnread
+                      ? "font-semibold text-white"
+                      : "font-medium text-gray-200"
                   }`}
                 >
                   {chat.phone}
-
-                  
                 </span>
               </div>
 

@@ -54,6 +54,7 @@ export default function ChatPage() {
         },
       ],
       unreadCount: 2,
+      avatar:"https://img.magnific.com/free-photo/friendly-smiling-successful-man-black-suit-waving-hand-hello-gesture-introduce-himself-saying-hi-welcome-greet-someone-white-background_176420-45255.jpg",
     },
   ]);
 
@@ -98,11 +99,11 @@ export default function ChatPage() {
                 lastMessage: data.message.text,
                 messages: [data.message],
                 unreadCount: incomingChatId === selectedChat ? 0 : 1,
+                avatar: data.avatar,
               },
             ];
           }
 
-          // чат уже есть — добавляем сообщение в него
           return prev.map((chat) => {
             if (chat.id !== existingChat.id) {
               return chat;
