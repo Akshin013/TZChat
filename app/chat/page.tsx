@@ -29,46 +29,43 @@ export default function ChatPage() {
   } = useResizableSidebar();
 
   const [chats, setChats] = useState<Chat[]>([
-    {
-  id: "994702820655",
-  phone: "+994 70 282 06 55",
-  lastMessage: "Да, всё работает 👍",
-  messages: [
-    {
-      id: 1,
-      text: "Привет! Проверяю тестовое задание 👋",
-      incoming: true,
-      time: "12:41",
-    },
-    {
-      id: 2,
-      text: "Привет! Да, всё готово.",
-      incoming: false,
-      time: "12:42",
-    },
-    {
-      id: 3,
-      text: "Отлично, сообщение отправляется 👍",
-      incoming: true,
-      time: "12:42",
-    },
-    {
-      id: 4,
-      text: "Да, можешь проверить 😊",
-      incoming: false,
-      time: "12:43",
-    },
-  ],
-  
-  username: "Akshin",
-  name: "Akshin Gadimov",
-
-}
-      ],
-      unreadCount: 2,
-      avatar:"https://img.magnific.com/free-photo/friendly-smiling-successful-man-black-suit-waving-hand-hello-gesture-introduce-himself-saying-hi-welcome-greet-someone-white-background_176420-45255.jpg",
-    },
-  ]);
+  {
+    id: "994702820655",
+    phone: "+994 70 282 06 55",
+    lastMessage: "Да, всё работает 👍",
+    messages: [
+      {
+        id: 1,
+        text: "Привет! Проверяю тестовое задание 👋",
+        incoming: true,
+        time: "12:41",
+      },
+      {
+        id: 2,
+        text: "Привет! Да, всё готово.",
+        incoming: false,
+        time: "12:42",
+      },
+      {
+        id: 3,
+        text: "Отлично, сообщение отправляется 👍",
+        incoming: true,
+        time: "12:42",
+      },
+      {
+        id: 4,
+        text: "Да, всё работает 👍",
+        incoming: false,
+        time: "12:43",
+      },
+    ],
+    unreadCount: 2,
+    username: "Akshin",
+    name: "Akshin Gadimov",
+    avatar:
+      "https://github.com/Akshin013/Portfolio/blob/main/portrait.jpeg",
+  },
+]);
 
   const currentChat = chats.find((chat) => chat.id === selectedChat);
 
