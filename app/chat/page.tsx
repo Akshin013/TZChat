@@ -30,28 +30,40 @@ export default function ChatPage() {
 
   const [chats, setChats] = useState<Chat[]>([
     {
-      id: "79233709894",
-      phone: "+7 923 370 98 94",
-      lastMessage: "Привет, как дела?",
-      messages: [
-        {
-          id: 1,
-          text: "Привет! 👋",
-          incoming: true,
-          time: "12:41",
-        },
-        {
-          id: 2,
-          text: "Здравствуйте!",
-          incoming: false,
-          time: "12:42",
-        },
-        {
-          id: 3,
-          text: "Как ваши дела?",
-          incoming: true,
-          time: "12:42",
-        },
+  id: "994702820655",
+  phone: "+994 70 282 06 55",
+  lastMessage: "Да, всё работает 👍",
+  messages: [
+    {
+      id: 1,
+      text: "Привет! Проверяю тестовое задание 👋",
+      incoming: true,
+      time: "12:41",
+    },
+    {
+      id: 2,
+      text: "Привет! Да, всё готово.",
+      incoming: false,
+      time: "12:42",
+    },
+    {
+      id: 3,
+      text: "Отлично, сообщение отправляется 👍",
+      incoming: true,
+      time: "12:42",
+    },
+    {
+      id: 4,
+      text: "Да, можешь проверить 😊",
+      incoming: false,
+      time: "12:43",
+    },
+  ],
+  
+  username: "Akshin",
+  name: "Akshin Gadimov",
+
+}
       ],
       unreadCount: 2,
       avatar:"https://img.magnific.com/free-photo/friendly-smiling-successful-man-black-suit-waving-hand-hello-gesture-introduce-himself-saying-hi-welcome-greet-someone-white-background_176420-45255.jpg",
